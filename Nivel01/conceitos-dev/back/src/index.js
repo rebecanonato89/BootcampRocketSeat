@@ -1,5 +1,6 @@
 const express = require('express');
-const { uuid } = require('uuidv4');
+const { v4: uuid } = require('uuid');
+const { isUuid } = require('uuidv4');
 
 
 
@@ -24,9 +25,45 @@ app.use(express.json());
   * Request Body: Conteúdo na hora de editar ou criar um recursos (JSON)
   */
 
+  /**
+   * Middleware
+   * 
+   * Interceptador de requisições que interrompe totalmente a requisição ou altera dados da requisição.
+   * 
+   */
+
 const projects = [];
 
 
+function logRequests(request, response, next) {
+    const { method, url } = request;
+
+    const logLabel = `[${method.toUpperCase()}] ${url}`;
+
+    console.log(logLabel);
+
+    return next();
+}
+
+function validateProjectId(request, response, next) {
+    const { id } = request.params;
+
+    if (!isUuid(id)) {
+        return response.status(400).json({ error: "Invalid project ID. "});
+    }
+
+    const projectIndex = projects.findIndex(project => project.id === id);
+
+    if(projectIndex < 0){
+        return response.status(400).json({ error: "Project not found. "});
+    }
+
+    return next();
+}
+
+app.use(logRequests);
+
+app.use('/projects/:id', validateProjectId);
 
 app.get('/projects', (request, response) => {
     const { title } = request.query;
@@ -55,13 +92,7 @@ app.put('/projects/:id', (request, response) => {
     const { id } = request.params;
     const { title, owner } = request.body;
 
-
-
     const projectIndex = projects.findIndex(project => project.id === id);
-
-    if(projectIndex < 0){
-        return response.status(400).json({ error: "Project not found "});
-    }
 
     const project = {
         id,
@@ -79,10 +110,6 @@ app.delete('/projects/:id', (request, response) => {
     const { id } = request.params;
 
     const projectIndex = projects.findIndex(project => project.id === id);
-
-    if(projectIndex < 0){
-        return response.status(400).json({ error: "Project not found "});
-    }
 
     projects.splice(projectIndex, 1);
 

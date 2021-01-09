@@ -5,7 +5,8 @@ import Header from './components/Header';
 function App() {
     return (
         <>
-            <Header />
+            <Header title="Hello Word" />
+            <Header title="projects" />
         </>
     );
 }

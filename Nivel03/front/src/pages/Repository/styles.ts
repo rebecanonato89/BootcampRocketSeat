@@ -2,39 +2,47 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: center; // alinha verticalmente
+  justify-content: space-between; //dá um espaço entre as duas informações na tela - joga um para cada lado.
+
+
   a {
     display: flex;
     align-items: center;
-    text-decoration: none;
+    text-decoration: none; // para ficar sem o underline
     color: #a8a8b3;
     transition: color 0.2s;
+
     &:hover {
       color: #666;
     }
+
     svg {
-      margin-right: 4px;
+      margin-right: 4px; // distanciar o icone do texto
     }
   }
 `;
 
 export const RepositoryInfo = styled.section`
-  margin-top: 80px;
+  margin-top: 80px;// distancia do Header
+
   header {
-    display: flex;
-    align-items: center;
+    display: flex; // para o titulo e descrição ficar ao lado.
+    align-items: center; 
+
     img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
     }
+
     div {
       margin-left: 24px;
       strong {
         font-size: 36px;
         color: #3d3d4d;
       }
+
       p {
         font-size: 18px;
         color: #737380;
@@ -42,21 +50,25 @@ export const RepositoryInfo = styled.section`
       }
     }
   }
+
   ul {
-    display: flex;
-    list-style: none;
-    margin-top: 40px;
+    display: flex; // ficar ao lado lado
+    list-style: none; // tirar as bolinhas da lista
+    margin-top: 40px; // espço do header
+
     li {
       & + li {
-        margin-left: 80px;
+        margin-left: 80px; // todo elemento li que é precedido de outro li terá o 80px de distancia
       }
+
       strong {
-        display: block;
+        display: block; // quebrar linha
         font-size: 36px;
         color: #3d3d4d;
       }
+
       span {
-        display: block;
+        display: block; // quebrar linha
         margin-top: 4px;
         color: #6c6c80;
       }

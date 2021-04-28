@@ -46,6 +46,15 @@ const Repository: React.FC = () => {
         api.get(`repos/${params.repository}/issues`).then(response => {
             setIssues(response.data);
         });
+
+        // async function loadData(): Promise<void> {
+        //     const [repository, issues] = await Promise.all([
+        //         api.get(`repos/${params.repository}`),
+        //         api.get(`repos/${params.repository}/issues`)
+        //     ]);
+        // } // essa função executa as duas chamadas ao mesmo tempo. Pois a segunda não depende da resposta da primeira.
+        // Promise race - faz varias chamadas, e salva a resposta do que retornar primeira - bom para buscar CEP
+
     }, [params.repository]);
 
     return (
@@ -54,8 +63,8 @@ const Repository: React.FC = () => {
                 <img src={logoImg} alt="GitHub Explorer" />
                 <Link to="/">
                     <FiChevronLeft size={16} />
-          Voltar
-        </Link>
+                    Voltar
+                </Link>
             </Header>
 
             {repository && (

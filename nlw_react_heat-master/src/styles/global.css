@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+}
+
+:root {
+  --WHITE: #ffffff;
+  --GREEN: #1b873f;
+  --PINK: #ff008e;
+  --ORANGE: #ff7a29;
+  --YELLOW: #ffcd1e;
+
+  --BLACK-PRIMARY: #09090a;
+  --BLACK-SECONDARY: #121214;
+  --BLACK-TERTIARY: #202024;
+
+  --GRAY-PRIMARY: #8d8d99;
+  --GRAY-SECONDARY: #c4c4cc;
+  --GRAY-TERTIARY: #e1e1e6;
+  --GRAY-QUATERNARY: #29292e;
+}
+
+body {
+  background: var(--BLACK-SECONDARY);
+  color: var(--GRAY-TERTIARY);
+}
